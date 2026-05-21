@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SiLaras — Portal Layanan Mandiri Bapas Kelas I Serang</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.10.0/dist/tabler-icons.min.css">
+<style>
+:root {
+  --navy:#0B3D6B; --navy-deep:#072A4E; --navy-mid:#0E4F8A;
+  --blue:#1565C0; --blue-mid:#1976D2; --blue-light:#E3F0FC; --blue-pale:#F0F7FF;
+  --accent:#F5A623; --accent-light:#FEF3DC;
+  --green:#1B8A5A; --green-light:#E6F7EF;
+  --red:#C0392B; --red-light:#FDECEA;
+  --purple:#6B21A8; --purple-light:#F3E8FF;
+  --gray-50:#F8F9FC; --gray-100:#EEF0F5; --gray-200:#DDE0EA;
+  --gray-300:#C5C9D6; --gray-400:#9EA5B8; --gray-600:#5A6278;
+  --gray-800:#2D3347; --gray-900:#181D2E; --white:#FFFFFF;
+  --font-display:'Fraunces',Georgia,serif;
+  --font-body:'Plus Jakarta Sans',sans-serif;
+  --r-sm:6px; --r-md:10px; --r-lg:16px; --r-xl:24px;
+  --sh-sm:0 1px 3px rgba(11,61,107,.08),0 1px 2px rgba(11,61,107,.04);
+  --sh-md:0 4px 16px rgba(11,61,107,.1),0 2px 6px rgba(11,61,107,.06);
+  --sh-lg:0 12px 40px rgba(11,61,107,.14),0 4px 12px rgba(11,61,107,.08);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body);background:var(--gray-50);color:var(--gray-800);line-height:1.6;min-height:100vh;}
+
+/* ===== LOGIN ===== */
+.login-page{min-height:100vh;display:flex;background:var(--navy-deep);}
+.login-left{
+  flex:1;display:flex;align-items:center;justify-content:center;padding:3rem;
+  background:linear-gradient(145deg,var(--navy-deep) 0%,var(--navy-mid) 60%,var(--blue) 100%);
+  position:relative;overflow:hidden;
+}
+.login-left::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 20% 50%,rgba(21,101,192,.3) 0%,transparent 60%),
+             radial-gradient(ellipse at 80% 20%,rgba(245,166,35,.1) 0%,transparent 50%);}
+.login-left::after{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;border:60px solid rgba(255,255,255,.03);}
+.ll-content{position:relative;max-width:380px;}
+.ll-brand{display:flex;align-items:center;gap:12px;margin-bottom:2.5rem;}
+.ll-logo{width:52px;height:52px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.2);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;}
+.ll-logo i{color:#fff;font-size:26px;}
+.ll-brand strong{font-size:22px;font-weight:800;color:#fff;display:block;}
+.ll-brand span{font-size:11px;color:rgba(255,255,255,.45);letter-spacing:1px;text-transform:uppercase;}
+.ll-content h1{font-family:var(--font-display);font-size:38px;font-weight:600;color:#fff;line-height:1.2;margin-bottom:1rem;}
+.ll-content h1 em{font-style:italic;color:rgba(255,255,255,.5);}
+.ll-content p{font-size:14px;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:2rem;}
+.feature-pills{display:flex;flex-wrap:wrap;gap:8px;}
+.pill{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:5px 12px;font-size:12px;color:rgba(255,255,255,.7);}
+.pill i{font-size:14px;color:#4ADE80;}
+
+.login-right{width:480px;flex-shrink:0;background:var(--white);display:flex;align-items:center;justify-content:center;padding:2.5rem;}
+.lr-wrap{width:100%;max-width:360px;}
+.lr-title{font-size:22px;font-weight:800;color:var(--gray-900);margin-bottom:4px;}
+.lr-sub{font-size:13px;color:var(--gray-400);margin-bottom:1.5rem;}
+
+/* Mode selector */
+.mode-selector{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:1.5rem;}
+.mode-card{border:2px solid var(--gray-200);border-radius:var(--r-lg);padding:14px 10px;cursor:pointer;text-align:center;transition:all .2s;background:var(--gray-50);}
+.mode-card:hover{border-color:var(--blue-mid);background:var(--blue-pale);}
+.mode-card.selected{border-color:var(--blue);background:var(--blue-light);}
+.mode-card i{font-size:28px;display:block;margin-bottom:6px;}
+.mode-card.selected i{color:var(--blue);}
+.mode-card span{font-size:12px;font-weight:700;color:var(--gray-600);display:block;}
+.mode-card small{font-size:10px;color:var(--gray-400);}
+.mode-card.selected span{color:var(--blue);}
+
+.info-box{background:var(--blue-light);border:1px solid #B3D4F5;border-radius:var(--r-md);padding:10px 12px;font-size:12px;color:var(--blue);margin-bottom:1rem;line-height:1.5;}
+.form-group{margin-bottom:12px;}
+.form-group label{font-size:11px;font-weight:700;color:var(--gray-600);letter-spacing:.5px;text-transform:uppercase;display:block;margin-bottom:5px;}
+.input-wrap{position:relative;}
+.input-wrap i{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--gray-300);pointer-events:none;}
+.input-wrap input{width:100%;padding:11px 12px 11px 40px;border-radius:var(--r-md);border:1.5px solid var(--gray-200);font-size:14px;color:var(--gray-800);font-family:var(--font-body);background:var(--gray-50);outline:none;transition:all .15s;}
+.input-wrap input:focus{border-color:var(--blue-mid);background:var(--white);box-shadow:0 0 0 3px rgba(25,118,210,.1);}
+.btn-login{width:100%;background:var(--navy);color:#fff;border:none;border-radius:var(--r-md);padding:13px;font-size:14px;font-weight:700;font-family:var(--font-body);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .15s;margin-top:1.5rem;}
+.btn-login:hover{background:var(--navy-mid);}
+.lr-footer{font-size:11px;color:var(--gray-400);text-align:center;margin-top:1.5rem;line-height:1.7;}
+
+/* ===== APP SHELL ===== */
+#app-shell{display:none;min-height:100vh;flex-direction:column;}
+
+/* ===== TOPBAR ===== */
+.topbar{height:60px;display:flex;align-items:center;padding:0 1rem;position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(0,0,0,.25);}
+.topbar.mode-klien{background:var(--navy);}
+.topbar.mode-pk{background:#1a1a2e;}
+.topbar-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0;}
+.tb-menu-btn{width:36px;height:36px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:20px;flex-shrink:0;transition:background .15s;}
+.tb-menu-btn:hover{background:rgba(255,255,255,.2);}
+.tb-logo{width:34px;height:34px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.tb-logo i{color:#fff;font-size:17px;}
+.tb-title{min-width:0;}
+.tb-title strong{font-size:14px;font-weight:700;color:#fff;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.tb-title span{font-size:10px;color:rgba(255,255,255,.45);white-space:nowrap;}
+.topbar-right{display:flex;align-items:center;gap:6px;flex-shrink:0;}
+.tb-btn{height:34px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:17px;padding:0 8px;gap:5px;transition:background .15s;white-space:nowrap;}
+.tb-btn:hover{background:rgba(255,255,255,.2);}
+.tb-btn span{font-size:12px;font-weight:600;}
+.notif-dot{position:absolute;top:6px;right:6px;width:7px;height:7px;background:var(--accent);border-radius:50%;border:1.5px solid var(--navy);}
+.tb-notif{position:relative;}
+.mode-badge{background:rgba(245,166,35,.2);border:1px solid rgba(245,166,35,.35);border-radius:100px;padding:3px 10px;font-size:10px;font-weight:700;color:var(--accent);letter-spacing:.5px;white-space:nowrap;}
+.user-chip{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:3px 10px 3px 4px;cursor:pointer;}
+.user-av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;}
+.user-av.klien{background:var(--blue-mid);color:#fff;}
+.user-av.pk{background:var(--accent);color:var(--navy);}
+.user-chip span{font-size:12px;color:#fff;font-weight:500;}
+
+/* ===== SIDEBAR OVERLAY ===== */
+.sidebar-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;opacity:0;pointer-events:none;transition:opacity .25s;}
+.sidebar-overlay.open{opacity:1;pointer-events:all;}
+.sidebar{position:fixed;top:0;left:-280px;width:280px;height:100vh;background:var(--white);z-index:400;box-shadow:var(--sh-lg);transition:left .25s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow-y:auto;}
+.sidebar.open{left:0;}
+.sidebar-head{padding:1.25rem 1rem 1rem;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;gap:10px;}
+.sidebar-head .logo{width:38px;height:38px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;flex-shrink:0;}
+.sidebar-head .logo.klien{background:var(--navy);}
+.sidebar-head .logo.pk{background:#1a1a2e;}
+.sidebar-head div strong{font-size:14px;font-weight:800;color:var(--gray-900);}
+.sidebar-head div span{font-size:11px;color:var(--gray-400);}
+.sidebar-close{margin-left:auto;width:30px;height:30px;border-radius:50%;background:var(--gray-100);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--gray-400);}
+.sidebar-body{flex:1;padding:.75rem;}
+.sidebar-section{margin-bottom:1.25rem;}
+.sidebar-label{font-size:10px;font-weight:700;color:var(--gray-400);letter-spacing:1px;text-transform:uppercase;padding:0 8px;margin-bottom:5px;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:var(--r-md);cursor:pointer;color:var(--gray-600);font-size:13.5px;font-weight:500;transition:all .15s;position:relative;text-decoration:none;}
+.nav-item i{font-size:18px;flex-shrink:0;}
+.nav-item:hover{background:var(--gray-50);color:var(--gray-800);}
+.nav-item.active{background:var(--blue-light);color:var(--blue);}
+.nav-item.active i{color:var(--blue);}
+.nav-badge{margin-left:auto;font-size:10px;font-weight:700;padding:2px 7px;border-radius:100px;}
+.nb-red{background:var(--red-light);color:var(--red);}
+.nb-amber{background:var(--accent-light);color:#7D4E00;}
+.nb-green{background:var(--green-light);color:var(--green);}
+.sidebar-footer-card{margin:0 .5rem .75rem;border-radius:var(--r-lg);padding:1rem;color:#fff;}
+.sidebar-footer-card.klien{background:linear-gradient(135deg,var(--navy),var(--blue));}
+.sidebar-footer-card.pk{background:linear-gradient(135deg,#1a1a2e,#2d2d5e);}
+.sfc-dot{width:8px;height:8px;background:#4ADE80;border-radius:50%;display:inline-block;margin-right:6px;}
+.sfc-p{font-size:11px;color:rgba(255,255,255,.6);margin-bottom:4px;}
+.sfc-strong{font-size:13px;font-weight:700;color:#fff;display:block;}
+.sfc-sub{font-size:11px;color:rgba(255,255,255,.5);}
+.sfc-box{margin-top:10px;background:rgba(255,255,255,.1);border-radius:var(--r-sm);padding:7px 10px;font-size:12px;color:rgba(255,255,255,.8);text-align:center;}
+.sfc-box strong{font-size:19px;color:var(--accent);display:inline;font-weight:800;}
+
+/* ===== BOTTOM NAV (mobile) ===== */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--gray-200);display:flex;z-index:150;box-shadow:0 -4px 20px rgba(11,61,107,.08);}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 4px 10px;cursor:pointer;background:none;border:none;font-family:var(--font-body);}
+.bn-item i{font-size:21px;color:var(--gray-400);}
+.bn-item span{font-size:9px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:.3px;}
+.bn-item.active i{color:var(--blue);}
+.bn-item.active span{color:var(--blue);}
+
+/* ===== PREV/NEXT NAV BAR ===== */
+.page-nav-bar{display:flex;align-items:center;justify-content:space-between;background:var(--white);border-top:1px solid var(--gray-100);padding:.75rem 1rem;position:sticky;bottom:60px;z-index:100;}
+.pnb-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--r-md);font-size:13px;font-weight:700;cursor:pointer;border:none;font-family:var(--font-body);transition:all .15s;}
+.pnb-prev{background:var(--gray-100);color:var(--gray-600);}
+.pnb-prev:hover{background:var(--gray-200);}
+.pnb-next{background:var(--navy);color:#fff;}
+.pnb-next:hover{background:var(--navy-mid);}
+.pnb-prev:disabled,.pnb-next:disabled{opacity:.35;cursor:not-allowed;}
+.pnb-center{font-size:12px;font-weight:600;color:var(--gray-400);}
+
+/* ===== MAIN ===== */
+.main-content{padding-bottom:130px;}
+.page{display:none;padding:1.25rem;animation:fadeUp .2s ease;}
+.page.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== PAGE HEADER ===== */
+.page-hdr{margin-bottom:1.5rem;}
+.page-hdr h1{font-family:var(--font-display);font-size:22px;font-weight:600;color:var(--gray-900);margin-bottom:3px;}
+.page-hdr p{font-size:13px;color:var(--gray-400);}
+
+/* ===== STAT CARDS ===== */
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:1.5rem;}
+.stat-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--r-lg);padding:1rem;position:relative;overflow:hidden;}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.sc-blue::before{background:var(--blue);}
+.sc-green::before{background:var(--green);}
+.sc-red::before{background:var(--red);}
+.sc-amber::before{background:var(--accent);}
+.sc-icon{width:36px;height:36px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:10px;}
+.sc-val{font-size:24px;font-weight:800;color:var(--gray-900);line-height:1;margin-bottom:3px;}
+.sc-lbl{font-size:11px;color:var(--gray-400);font-weight:500;}
+.sc-sub{font-size:10px;margin-top:5px;font-weight:600;}
+
+/* ===== CARD ===== */
+.card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--r-lg);overflow:hidden;margin-bottom:1.25rem;}
+.card-head{padding:.875rem 1rem;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;gap:8px;}
+.card-head i{font-size:19px;color:var(--blue);}
+.card-head h3{font-size:14px;font-weight:700;color:var(--gray-800);}
+.card-head .ml{margin-left:auto;}
+.card-body{padding:1rem;}
+
+/* ===== ALERT ===== */
+.alert{border-radius:var(--r-lg);padding:.875rem 1rem;display:flex;gap:10px;margin-bottom:1.25rem;border:1px solid;}
+.alert i{font-size:19px;flex-shrink:0;margin-top:1px;}
+.alert strong{font-size:13px;font-weight:700;display:block;margin-bottom:2px;}
+.alert p{font-size:12px;}
+.alert-red{background:var(--red-light);border-color:#F1948A;}
+.alert-red i,.alert-red strong{color:var(--red);}
+.alert-red p{color:#922B21;}
+.alert-amber{background:var(--accent-light);border-color:var(--accent);}
+.alert-amber i,.alert-amber strong{color:#D08000;}
+.alert-amber p{color:#7D4E00;}
+.alert-green{background:var(--green-light);border-color:#82E0AA;}
+.alert-green i,.alert-green strong{color:var(--green);}
+.alert-green p{color:#0D5535;}
+.alert-info{background:var(--blue-light);border-color:#B3D4F5;}
+.alert-info i,.alert-info strong{color:var(--blue);}
+.alert-info p{color:var(--navy);}
+
+/* ===== SECTION HEADING ===== */
+.sec-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem;}
+.sec-row h2{font-size:14px;font-weight:700;color:var(--gray-800);display:flex;align-items:center;gap:7px;}
+.sec-row h2 i{color:var(--blue);}
+.sec-link{font-size:12px;color:var(--blue);font-weight:600;background:none;border:none;cursor:pointer;font-family:var(--font-body);}
+
+/* ===== MENU TILES ===== */
+.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:1.5rem;}
+.menu-tile{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--r-lg);padding:1rem .875rem;cursor:pointer;transition:all .18s;position:relative;}
+.menu-tile:hover{transform:translateY(-2px);box-shadow:var(--sh-md);border-color:var(--blue-mid);}
+.tile-icon{width:40px;height:40px;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:10px;}
+.menu-tile h3{font-size:13px;font-weight:700;color:var(--gray-800);margin-bottom:2px;line-height:1.3;}
+.menu-tile p{font-size:11px;color:var(--gray-400);line-height:1.3;}
+.tile-badge{position:absolute;top:8px;right:8px;background:var(--accent);color:var(--navy-deep);font-size:10px;font-weight:700;padding:2px 7px;border-radius:100px;}
+
+/* ===== SCHEDULE ===== */
+.sched-list{display:flex;flex-direction:column;gap:8px;}
+.sched-item{display:flex;align-items:center;gap:12px;padding:10px 12px;background:var(--gray-50);border-radius:var(--r-md);border:1px solid var(--gray-100);}
+.sched-date{text-align:center;min-width:34px;}
+.sd-day{font-size:18px;font-weight:800;color:var(--navy);line-height:1;}
+.sd-mon{font-size:10px;color:var(--gray-400);text-transform:uppercase;font-weight:600;}
+.sched-div{width:1px;height:34px;background:var(--gray-200);}
+.sched-info strong{font-size:13px;font-weight:600;color:var(--gray-800);display:block;}
+.sched-info span{font-size:11px;color:var(--gray-400);}
+.sched-tag{font-size:11px;font-weight:600;padding:3px 9px;border-radius:100px;white-space:nowrap;flex-shrink:0;}
+.tag-wajib{background:var(--accent-light);color:#7D4E00;}
+.tag-online{background:var(--purple-light);color:var(--purple);}
+.tag-luring{background:var(--green-light);color:var(--green);}
+.tag-konseling{background:var(--blue-light);color:var(--blue);}
+
+/* ===== BADGE ===== */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:100px;font-size:11px;font-weight:700;}
+.badge::before{content:'';width:5px;height:5px;border-radius:50%;}
+.b-sudah{background:var(--green-light);color:var(--green);}
+.b-sudah::before{background:var(--green);}
+.b-belum{background:var(--red-light);color:var(--red);}
+.b-belum::before{background:var(--red);}
+.b-pb{background:var(--blue-light);color:var(--blue);}
+.b-pb::before{background:var(--blue);}
+.b-cb{background:var(--purple-light);color:var(--purple);}
+.b-cb::before{background:var(--purple);}
+.b-proses{background:#FFF3CD;color:#856404;}
+.b-proses::before{background:#FFC107;}
+.b-aktif{background:var(--green-light);color:var(--green);}
+.b-aktif::before{background:var(--green);}
+
+/* ===== TABLE ===== */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.data-table{width:100%;border-collapse:collapse;min-width:520px;}
+.data-table th{font-size:11px;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:.5px;padding:8px 10px;text-align:left;border-bottom:1px solid var(--gray-100);}
+.data-table td{padding:10px;border-bottom:1px solid var(--gray-100);font-size:13px;color:var(--gray-800);vertical-align:middle;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:hover td{background:var(--gray-50);}
+.klien-name{display:flex;align-items:center;gap:8px;}
+.klien-av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;}
+.kn-info strong{font-size:13px;font-weight:600;color:var(--gray-800);display:block;line-height:1.2;}
+.kn-info span{font-size:10px;color:var(--gray-400);}
+
+/* ===== PROGRESS BAR ===== */
+.prog-wrap{margin-bottom:12px;}
+.prog-label{display:flex;justify-content:space-between;font-size:12px;color:var(--gray-600);margin-bottom:4px;}
+.prog-label strong{color:var(--gray-800);}
+.prog-bar{height:7px;background:var(--gray-100);border-radius:100px;overflow:hidden;}
+.prog-fill{height:100%;border-radius:100px;}
+
+/* ===== TIMELINE ===== */
+.tl{display:flex;flex-direction:column;}
+.tl-item{display:flex;gap:10px;padding-bottom:.875rem;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-left{display:flex;flex-direction:column;align-items:center;width:30px;flex-shrink:0;}
+.tl-dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.tl-dot.green{background:var(--green-light);color:var(--green);}
+.tl-dot.blue{background:var(--blue-light);color:var(--blue);}
+.tl-dot.amber{background:var(--accent-light);color:#D08000;}
+.tl-dot.red{background:var(--red-light);color:var(--red);}
+.tl-line{flex:1;width:2px;background:var(--gray-100);min-height:14px;}
+.tl-item:last-child .tl-line{display:none;}
+.tl-content{flex:1;padding-top:4px;}
+.tl-content strong{font-size:13px;font-weight:600;color:var(--gray-800);display:block;}
+.tl-content p{font-size:11px;color:var(--gray-400);}
+
+/* ===== NOTIF ===== */
+.notif-item{display:flex;gap:10px;padding:12px;border-radius:var(--r-md);border:1px solid;margin-bottom:8px;}
+.notif-item.unread{background:var(--blue-light);border-color:#B3D4F5;}
+.notif-item.read{background:var(--gray-50);border-color:var(--gray-100);}
+.notif-ico{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.ni-red{background:var(--red-light);color:var(--red);}
+.ni-green{background:var(--green-light);color:var(--green);}
+.ni-amber{background:var(--accent-light);color:#D08000;}
+.ni-blue{background:var(--blue-light);color:var(--blue);}
+.notif-item strong{font-size:13px;font-weight:700;color:var(--gray-800);display:block;margin-bottom:3px;}
+.notif-item p{font-size:12px;color:var(--gray-600);line-height:1.4;}
+.notif-time{font-size:11px;color:var(--gray-400);margin-top:3px;display:block;}
+
+/* ===== FACE SCAN ===== */
+.face-area{background:var(--gray-50);border:2px dashed var(--gray-200);border-radius:var(--r-xl);padding:2rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.875rem;cursor:pointer;transition:all .2s;text-align:center;margin-bottom:1rem;}
+.face-area:hover{border-color:var(--blue-mid);background:var(--blue-light);}
+.face-area.scanning{border-color:var(--blue);background:var(--blue-light);cursor:default;}
+.face-area.verified{border-color:var(--green);background:var(--green-light);cursor:default;border-style:solid;}
+.scan-ring{width:88px;height:88px;border-radius:50%;background:var(--white);border:3px solid var(--gray-200);display:flex;align-items:center;justify-content:center;font-size:44px;color:var(--gray-400);}
+.scan-ring.pulse{border-color:var(--blue);color:var(--blue);animation:scanPulse 1.2s ease-in-out infinite;}
+.scan-ring.done{border-color:var(--green);color:var(--green);}
+@keyframes scanPulse{0%,100%{box-shadow:0 0 0 0 rgba(21,101,192,.3)}50%{box-shadow:0 0 0 14px rgba(21,101,192,0)}}
+
+/* ===== STEPS ===== */
+.steps{display:flex;align-items:center;margin-bottom:1.25rem;}
+.step{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;}
+.step-c{width:30px;height:30px;border-radius:50%;border:2px solid var(--gray-200);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--gray-400);background:var(--white);}
+.step.active .step-c{border-color:var(--blue);color:var(--blue);background:var(--blue-light);}
+.step.done .step-c{border-color:var(--green);color:#fff;background:var(--green);}
+.step-lbl{font-size:9px;color:var(--gray-400);text-align:center;line-height:1.2;}
+.step.active .step-lbl{color:var(--blue);font-weight:600;}
+.step-line{flex:1;height:2px;background:var(--gray-200);margin:0 3px 14px;}
+.step-line.done{background:var(--green);}
+
+/* ===== FORM ===== */
+.fg{display:flex;flex-direction:column;gap:4px;margin-bottom:10px;}
+.fg label{font-size:11px;font-weight:700;color:var(--gray-600);letter-spacing:.3px;text-transform:uppercase;}
+.fg input,.fg select,.fg textarea{font-family:var(--font-body);padding:9px 11px;border-radius:var(--r-md);border:1.5px solid var(--gray-200);font-size:14px;color:var(--gray-800);background:var(--white);outline:none;transition:border-color .15s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--blue-mid);box-shadow:0 0 0 3px rgba(25,118,210,.1);}
+.fg textarea{resize:vertical;min-height:80px;}
+
+/* ===== TABS ===== */
+.tabs{display:flex;gap:4px;background:var(--gray-100);border-radius:var(--r-md);padding:4px;margin-bottom:1rem;}
+.tab-btn{flex:1;padding:7px;border-radius:var(--r-sm);border:none;cursor:pointer;font-size:12px;font-weight:700;background:none;color:var(--gray-400);transition:all .15s;font-family:var(--font-body);}
+.tab-btn.active{background:var(--white);color:var(--navy);}
+
+/* ===== BUTTONS ===== */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:var(--r-md);font-size:13px;font-weight:600;cursor:pointer;border:none;font-family:var(--font-body);transition:all .15s;}
+.btn-primary{background:var(--navy);color:#fff;}
+.btn-primary:hover{background:var(--navy-mid);}
+.btn-outline{background:none;color:var(--gray-600);border:1px solid var(--gray-200);}
+.btn-outline:hover{background:var(--gray-50);}
+.btn-sm{padding:5px 10px;font-size:12px;border-radius:var(--r-sm);}
+.btn-green{background:var(--green);color:#fff;}
+.btn-red{background:var(--red);color:#fff;}
+.btn-full{width:100%;justify-content:center;}
+.btn-lg{padding:12px 20px;font-size:14px;border-radius:var(--r-lg);}
+
+/* ===== SUCCESS SCREEN ===== */
+.success-screen{display:flex;flex-direction:column;align-items:center;text-align:center;padding:2rem 1rem;gap:.875rem;}
+.success-icon{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;}
+.si-green{background:var(--green-light);color:var(--green);}
+.si-blue{background:var(--blue-light);color:var(--blue);}
+.success-screen h2{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--gray-900);}
+.success-screen p{font-size:13px;color:var(--gray-400);max-width:280px;}
+.bukti-card{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--r-lg);padding:1rem;width:100%;max-width:300px;text-align:left;}
+.bukti-row{display:flex;justify-content:space-between;font-size:12px;padding:4px 0;}
+.bukti-row span{color:var(--gray-400);}
+.bukti-row strong{color:var(--gray-800);}
+
+/* ===== DETAIL ===== */
+.detail-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--gray-100);font-size:13px;}
+.detail-row:last-child{border-bottom:none;}
+.detail-row span{color:var(--gray-400);}
+.detail-row strong{color:var(--gray-800);text-align:right;max-width:60%;}
+
+/* ===== PROFILE HEADER ===== */
+.profile-hdr{background:linear-gradient(135deg,var(--navy),var(--blue));border-radius:var(--r-xl);padding:1.5rem;display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;}
+.profile-av{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:var(--navy);flex-shrink:0;border:2px solid rgba(255,255,255,.3);}
+.profile-hdr h2{font-size:17px;font-weight:700;color:#fff;margin-bottom:3px;}
+.profile-hdr p{font-size:12px;color:rgba(255,255,255,.6);margin-bottom:6px;}
+.profile-status{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.15);border-radius:100px;padding:3px 10px;font-size:11px;color:#fff;font-weight:600;}
+.profile-status::before{content:'';width:6px;height:6px;background:#4ADE80;border-radius:50%;}
+
+/* ===== DOC LIST ===== */
+.doc-list{display:flex;flex-direction:column;gap:7px;}
+.doc-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--gray-50);border-radius:var(--r-md);border:1px solid var(--gray-100);cursor:pointer;transition:all .15s;}
+.doc-item:hover{background:var(--blue-light);border-color:var(--blue-mid);}
+.doc-icon{width:36px;height:36px;border-radius:var(--r-sm);background:var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--blue);flex-shrink:0;}
+.doc-info strong{font-size:13px;font-weight:600;color:var(--gray-800);display:block;}
+.doc-info span{font-size:11px;color:var(--gray-400);}
+.doc-item .doc-dl{font-size:17px;color:var(--gray-400);}
+
+/* ===== MODAL ===== */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;display:flex;align-items:flex-end;justify-content:center;animation:fadeIn .15s;}
+.modal-box{background:var(--white);border-radius:var(--r-xl) var(--r-xl) 0 0;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;}
+.modal-head{padding:1rem 1.25rem;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;gap:8px;position:sticky;top:0;background:var(--white);}
+.modal-head i{font-size:20px;color:var(--blue);}
+.modal-head h3{font-size:15px;font-weight:700;color:var(--gray-800);}
+.modal-close{margin-left:auto;width:28px;height:28px;border-radius:50%;background:var(--gray-100);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--gray-400);}
+.modal-body{padding:1.25rem;}
+.modal-footer{padding:.875rem 1.25rem;border-top:1px solid var(--gray-100);display:flex;gap:8px;justify-content:flex-end;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ===== SEARCH ===== */
+.search-wrap{position:relative;margin-bottom:1rem;}
+.search-wrap i{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:17px;color:var(--gray-300);}
+.search-wrap input{width:100%;padding:9px 11px 9px 38px;border-radius:var(--r-md);border:1.5px solid var(--gray-200);font-size:14px;font-family:var(--font-body);outline:none;transition:all .15s;}
+.search-wrap input:focus{border-color:var(--blue-mid);box-shadow:0 0 0 3px rgba(25,118,210,.1);}
+
+/* ===== RESPONSIVE ===== */
+@media(min-width:768px){
+  .stat-grid{grid-template-columns:repeat(4,1fr);}
+  .menu-grid{grid-template-columns:repeat(3,1fr);}
+  .page{padding:2rem;}
+  .bottom-nav{display:none;}
+  .page-nav-bar{bottom:0;}
+  .main-content{padding-bottom:70px;}
+}
+@media(max-width:480px){
+  .login-page{flex-direction:column;}
+  .login-left{display:none;}
+  .login-right{width:100%;min-height:100vh;}
+  .user-chip span{display:none;}
+  .mode-badge{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN PAGE ===== -->
+<div id="login-page">
+<div class="login-page">
+  <div class="login-left">
+    <div class="ll-content">
+      <div class="ll-brand">
+        <div class="ll-logo"><i class="ti ti-building-community"></i></div>
+        <div><strong>SiLaras</strong><span>Bapas Kelas I Serang</span></div>
+      </div>
+      <h1>Satu portal, <em>semua</em> layanan</h1>
+      <p>Portal digital resmi Balai Pemasyarakatan Kelas I Serang. Melayani klien pemasyarakatan dan Pembimbing Kemasyarakatan dalam satu platform terintegrasi.</p>
+      <div class="feature-pills">
+        <span class="pill"><i class="ti ti-check"></i> Wajib lapor online</span>
+        <span class="pill"><i class="ti ti-check"></i> Jadwal bimbingan</span>
+        <span class="pill"><i class="ti ti-check"></i> Permohonan PB/CB</span>
+        <span class="pill"><i class="ti ti-check"></i> Monitoring klien</span>
+        <span class="pill"><i class="ti ti-check"></i> Verifikasi biometrik</span>
+        <span class="pill"><i class="ti ti-check"></i> Notifikasi otomatis</span>
+      </div>
+    </div>
+  </div>
+  <div class="login-right">
+    <div class="lr-wrap">
+      <div style="text-align:center;margin-bottom:1.5rem">
+        <div style="width:48px;height:48px;background:var(--navy);border-radius:var(--r-lg);display:flex;align-items:center;justify-content:center;margin:0 auto 10px"><i class="ti ti-building-community" style="color:#fff;font-size:24px"></i></div>
+        <div class="lr-title">Selamat Datang</div>
+        <div class="lr-sub">Pilih mode akses dan masuk ke portal</div>
+      </div>
+
+      <div class="mode-selector">
+        <div class="mode-card selected" id="mode-klien-card" onclick="selectMode('klien')">
+          <i class="ti ti-user" style="color:var(--blue)"></i>
+          <span>Klien</span>
+          <small>Pemasyarakatan</small>
+        </div>
+        <div class="mode-card" id="mode-pk-card" onclick="selectMode('pk')">
+          <i class="ti ti-shield-check" style="color:var(--gray-400)"></i>
+          <span>Petugas PK</span>
+          <small>Pembimbing</small>
+        </div>
+      </div>
+
+      <div class="info-box"><i class="ti ti-info-circle"></i> Demo: masukkan data apa saja lalu klik Masuk</div>
+
+      <div class="form-group">
+        <label id="id-label">NOMOR REGISTER KLIEN</label>
+        <div class="input-wrap">
+          <i class="ti ti-id-badge-2"></i>
+          <input type="text" id="login-id" placeholder="W27.PAS.PK.01.01.2024">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>KATA SANDI</label>
+        <div class="input-wrap">
+          <i class="ti ti-lock"></i>
+          <input type="password" id="login-pass" placeholder="Kata sandi Anda">
+        </div>
+      </div>
+      <button class="btn-login" onclick="doLogin()">
+        <i class="ti ti-login"></i> <span id="login-btn-text">Masuk sebagai Klien</span>
+      </button>
+      <div class="lr-footer">
+        <strong style="color:var(--gray-600)">Balai Pemasyarakatan Kelas I Serang</strong><br>
+        Kementerian Imigrasi dan Pemasyarakatan RI<br>
+        <a href="https://bapas-serang.kemenimipas.go.id" target="_blank" style="color:var(--blue);text-decoration:none;font-weight:600">🌐 bapas-serang.kemenimipas.go.id</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== APP SHELL ===== -->
+<div id="app-shell" style="display:none;flex-direction:column;min-height:100vh">
+
+  <!-- TOPBAR -->
+  <header class="topbar mode-klien" id="topbar">
+    <div class="topbar-left">
+      <div class="tb-menu-btn" onclick="toggleSidebar()" id="menu-btn" title="Menu"><i class="ti ti-menu-2"></i></div>
+      <div class="tb-logo"><i class="ti ti-building-community"></i></div>
+      <div class="tb-title">
+        <strong>SiLaras</strong>
+        <span id="tb-sub">Bapas Kelas I Serang · Kemenimipas RI</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="mode-badge" id="mode-badge">Mode Klien</div>
+      <div class="tb-btn tb-notif" onclick="navigateTo('notifikasi')" title="Notifikasi">
+        <i class="ti ti-bell"></i>
+        <span class="notif-dot" id="notif-dot"></span>
+      </div>
+      <div class="user-chip" onclick="navigateTo('profil')" id="user-chip">
+        <div class="user-av klien" id="user-av">AS</div>
+        <span id="user-name">Ahmad S.</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <div class="logo klien" id="sb-logo"><i class="ti ti-building-community"></i></div>
+      <div><strong id="sb-title">SiLaras Klien</strong><span id="sb-sub">Portal Layanan Mandiri</span></div>
+      <button class="sidebar-close" onclick="toggleSidebar()"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="sidebar-body" id="sidebar-body">
+      <!-- filled by JS -->
+    </div>
+    <div id="sidebar-footer-area"></div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content" id="main-content">
+    <!-- Pages filled by JS -->
+  </div>
+
+  <!-- PREV/NEXT NAV BAR -->
+  <div class="page-nav-bar" id="page-nav-bar">
+    <button class="pnb-btn pnb-prev" id="btn-prev" onclick="prevPage()">
+      <i class="ti ti-chevron-left"></i> Sebelumnya
+    </button>
+    <span class="pnb-center" id="pnb-label">Beranda</span>
+    <button class="pnb-btn pnb-next" id="btn-next" onclick="nextPage()">
+      Selanjutnya <i class="ti ti-chevron-right"></i>
+    </button>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav" id="bottom-nav"></nav>
+
+</div>
+
+<!-- ===== MODAL CONTAINER ===== -->
+<div id="modal-container"></div>
+
+<script>
+// ===== STATE =====
+let currentMode = 'klien'; // 'klien' | 'pk'
+let currentPage = 'beranda';
+let scanStage = 0;
+
+// ===== PAGES CONFIG =====
+const KLIEN_PAGES = ['beranda','wajiblapor','jadwal','permohonan','dokumen','notifikasi','profil'];
+const PK_PAGES    = ['beranda','monitoring','klien','jadwal','permohonan','laporan','notifikasi','profil'];
+
+// ===== KLIEN DATA =====
+const klienList = [
+  {nama:'Ahmad Subagyo',reg:'W27.PAS.PK.01.01.2024',jenis:'PB',mulai:'12 Jan 2026',berakhir:'12 Jan 2027',kepatuhan:100,lapor:'sudah',waktu:'08 Mei, 09:14',metode:'Online',bukti:'WL/2026/05/00389',color:'#1565C0'},
+  {nama:'Budi Santoso',reg:'W27.PAS.PK.02.01.2024',jenis:'PB',mulai:'15 Jan 2026',berakhir:'15 Jan 2027',kepatuhan:100,lapor:'sudah',waktu:'08 Mei, 10:02',metode:'Online',bukti:'WL/2026/05/00390',color:'#1B8A5A'},
+  {nama:'Hendra Kusuma',reg:'W27.PAS.PK.04.01.2024',jenis:'CB',mulai:'20 Jan 2026',berakhir:'20 Jul 2026',kepatuhan:95,lapor:'sudah',waktu:'08 Mei, 10:45',metode:'Online',bukti:'WL/2026/05/00391',color:'#6B21A8'},
+  {nama:'Rudi Hartono',reg:'W27.PAS.PK.03.01.2024',jenis:'PB',mulai:'10 Jan 2026',berakhir:'10 Jan 2027',kepatuhan:90,lapor:'sudah',waktu:'07 Mei, 14:30',metode:'Luring',bukti:'WL/2026/05/00385',color:'#D08000'},
+  {nama:'Dedi Prasetyo',reg:'W27.PAS.PK.07.01.2024',jenis:'PB',mulai:'05 Feb 2026',berakhir:'05 Feb 2027',kepatuhan:75,lapor:'belum',waktu:'—',metode:'—',bukti:'—',color:'#C0392B'},
+  {nama:'Sugeng Riyadi',reg:'W27.PAS.PK.11.01.2024',jenis:'CB',mulai:'18 Feb 2026',berakhir:'18 Aug 2026',kepatuhan:80,lapor:'belum',waktu:'—',metode:'—',bukti:'—',color:'#C0392B'},
+  {nama:'Wahyu Santosa',reg:'W27.PAS.PK.09.01.2024',jenis:'Asimilasi',mulai:'01 Mar 2026',berakhir:'01 Sep 2026',kepatuhan:85,lapor:'belum',waktu:'—',metode:'—',bukti:'—',color:'#C0392B'},
+  {nama:'Eko Setiawan',reg:'W27.PAS.PK.06.01.2024',jenis:'PB',mulai:'08 Jan 2026',berakhir:'08 Jan 2027',kepatuhan:100,lapor:'sudah',waktu:'07 Mei, 11:00',metode:'Online',bukti:'WL/2026/05/00383',color:'#1565C0'},
+];
+
+// ===== LOGIN =====
+function selectMode(mode) {
+  currentMode = mode;
+  document.getElementById('mode-klien-card').classList.toggle('selected', mode==='klien');
+  document.getElementById('mode-pk-card').classList.toggle('selected', mode==='pk');
+  document.getElementById('mode-klien-card').querySelector('i').style.color = mode==='klien' ? 'var(--blue)' : 'var(--gray-400)';
+  document.getElementById('mode-pk-card').querySelector('i').style.color = mode==='pk' ? '#6B21A8' : 'var(--gray-400)';
+  document.getElementById('id-label').textContent = mode==='klien' ? 'NOMOR REGISTER KLIEN' : 'NIP / ID PEMBIMBING';
+  document.getElementById('login-id').placeholder = mode==='klien' ? 'W27.PAS.PK.01.01.2024' : 'Nomor Induk Pegawai';
+  document.getElementById('login-btn-text').textContent = mode==='klien' ? 'Masuk sebagai Klien' : 'Masuk sebagai PK';
+}
+
+function doLogin() {
+  document.getElementById('login-page').style.display = 'none';
+  const shell = document.getElementById('app-shell');
+  shell.style.display = 'flex';
+  setupMode(currentMode);
+  currentPage = 'beranda';
+  renderAll();
+  navigateTo('beranda');
+}
+
+function doLogout() {
+  closeSidebar();
+  document.getElementById('app-shell').style.display = 'none';
+  document.getElementById('login-page').style.display = 'block';
+  scanStage = 0;
+}
+
+// ===== SETUP MODE =====
+function setupMode(mode) {
+  const topbar = document.getElementById('topbar');
+  const badge = document.getElementById('mode-badge');
+  const sbLogo = document.getElementById('sb-logo');
+  const sbTitle = document.getElementById('sb-title');
+  const sbSub = document.getElementById('sb-sub');
+  const userAv = document.getElementById('user-av');
+  const userName = document.getElementById('user-name');
+
+  if (mode === 'klien') {
+    topbar.className = 'topbar mode-klien';
+    badge.textContent = 'Mode Klien';
+    sbLogo.className = 'logo klien'; sbTitle.textContent = 'SiLaras Klien'; sbSub.textContent = 'Portal Layanan Mandiri';
+    userAv.className = 'user-av klien'; userAv.textContent = 'AS'; userName.textContent = 'Ahmad S.';
+  } else {
+    topbar.className = 'topbar mode-pk';
+    badge.textContent = 'Mode PK';
+    sbLogo.className = 'logo pk'; sbTitle.textContent = 'SiLaras PK'; sbSub.textContent = 'Dashboard Pembimbing';
+    userAv.className = 'user-av pk'; userAv.textContent = 'SR'; userName.textContent = 'Siti R.';
+  }
+}
+
+// ===== SIDEBAR =====
+function toggleSidebar() {
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('sidebar-overlay');
+  const isOpen = sb.classList.contains('open');
+  if (isOpen) closeSidebar();
+  else { sb.classList.add('open'); ov.classList.add('open'); renderSidebar(); }
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+}
+
+function renderSidebar() {
+  const body = document.getElementById('sidebar-body');
+  const footer = document.getElementById('sidebar-footer-area');
+  const pages = currentMode === 'klien' ? KLIEN_PAGES : PK_PAGES;
+  const labels = {
+    beranda:'Beranda', wajiblapor:'Wajib Lapor Online', monitoring:'Monitoring Lapor',
+    klien:'Data Klien', jadwal:'Jadwal Bimbingan', permohonan:currentMode==='klien'?'Permohonan PB/CB':'Verifikasi PB/CB',
+    dokumen:'Dokumen Saya', laporan:'Laporan & Rekap', notifikasi:'Notifikasi', profil:'Profil'
+  };
+  const icons = {
+    beranda:'ti-home', wajiblapor:'ti-scan', monitoring:'ti-chart-line',
+    klien:'ti-users', jadwal:'ti-calendar', permohonan:'ti-file-plus',
+    dokumen:'ti-folder', laporan:'ti-chart-bar', notifikasi:'ti-bell', profil:'ti-user'
+  };
+  const badges = {
+    wajiblapor: currentMode==='klien' ? '' : '<span class="nav-badge nb-red">3</span>',
+    monitoring: '<span class="nav-badge nb-red">3</span>',
+    permohonan: currentMode==='pk' ? '<span class="nav-badge nb-amber">2</span>' : '',
+    notifikasi: '<span class="nav-badge nb-red" id="sb-notif-cnt">4</span>',
+    jadwal: '<span class="nav-badge nb-green">3</span>',
+  };
+  body.innerHTML = `
+    <div class="sidebar-section">
+      <div class="sidebar-label">Menu Utama</div>
+      ${pages.map(p=>`
+        <a class="nav-item${p===currentPage?' active':''}" onclick="navigateTo('${p}');closeSidebar()">
+          <i class="ti ${icons[p]||'ti-circle'}"></i> ${labels[p]||p}
+          ${badges[p]||''}
+        </a>`).join('')}
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Lainnya</div>
+      <a class="nav-item" onclick="doLogout()"><i class="ti ti-logout"></i> Keluar</a>
+    </div>`;
+
+  footer.innerHTML = currentMode === 'klien' ? `
+    <div class="sidebar-footer-card klien" style="margin:.5rem .75rem 1rem">
+      <p><span class="sfc-dot"></span>Status Aktif · PB</p>
+      <strong class="sfc-strong">Ahmad Subagyo</strong>
+      <span class="sfc-sub">Bapas Kelas I Serang</span>
+      <div class="sfc-box">Sisa Bimbingan: <strong>250</strong> hari</div>
+    </div>` : `
+    <div class="sidebar-footer-card pk" style="margin:.5rem .75rem 1rem">
+      <p><span class="sfc-dot"></span>Pembimbing Aktif</p>
+      <strong class="sfc-strong">Siti Rahayu, S.H.</strong>
+      <span class="sfc-sub">NIP: 19850512 200604 2 001</span>
+      <div class="sfc-box">Klien Binaan: <strong>18</strong> orang</div>
+    </div>`;
+}
+
+// ===== RENDER ALL =====
+function renderAll() {
+  renderBottomNav();
+  renderPages();
+}
+
+// ===== BOTTOM NAV =====
+function renderBottomNav() {
+  const nav = document.getElementById('bottom-nav');
+  const pages = currentMode === 'klien'
+    ? [['beranda','ti-home','Beranda'],['wajiblapor','ti-scan','Lapor'],['jadwal','ti-calendar','Jadwal'],['dokumen','ti-folder','Dokumen'],['profil','ti-user','Profil']]
+    : [['beranda','ti-home','Beranda'],['monitoring','ti-chart-line','Monitor'],['klien','ti-users','Klien'],['permohonan','ti-file-check','PB/CB'],['profil','ti-user','Profil']];
+  nav.innerHTML = pages.map(([p,ico,lbl])=>`
+    <button class="bn-item${p===currentPage?' active':''}" id="bn-${p}" onclick="navigateTo('${p}')">
+      <i class="ti ${ico}"></i><span>${lbl}</span>
+    </button>`).join('');
+}
+
+// ===== NAVIGATE =====
+function navigateTo(page) {
+  currentPage = page;
+  if(page==='notifikasi') clearNotif();
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const pg = document.getElementById('page-'+page);
+  if(pg) pg.classList.add('active');
+  document.querySelectorAll('.bn-item').forEach(b=>b.classList.remove('active'));
+  const bn = document.getElementById('bn-'+page);
+  if(bn) bn.classList.add('active');
+  updatePrevNext();
+  window.scrollTo(0,0);
+  closeSidebar();
+}
+
+function updatePrevNext() {
+  const pages = currentMode==='klien' ? KLIEN_PAGES : PK_PAGES;
+  const idx = pages.indexOf(currentPage);
+  const prevBtn = document.getElementById('btn-prev');
+  const nextBtn = document.getElementById('btn-next');
+  const lbl = document.getElementById('pnb-label');
+  const labels = {beranda:'Beranda',wajiblapor:'Wajib Lapor',monitoring:'Monitoring',klien:'Data Klien',jadwal:'Jadwal',permohonan:'Permohonan',dokumen:'Dokumen',laporan:'Laporan',notifikasi:'Notifikasi',profil:'Profil'};
+  prevBtn.disabled = idx <= 0;
+  nextBtn.disabled = idx >= pages.length-1;
+  lbl.textContent = `${labels[currentPage]||currentPage} (${idx+1}/${pages.length})`;
+  if(prevBtn.disabled){prevBtn.style.opacity='.35';prevBtn.style.cursor='not-allowed';}
+  else{prevBtn.style.opacity='1';prevBtn.style.cursor='pointer';}
+  if(nextBtn.disabled){nextBtn.style.opacity='.35';nextBtn.style.cursor='not-allowed';}
+  else{nextBtn.style.opacity='1';nextBtn.style.cursor='pointer';}
+}
+
+function prevPage() {
+  const pages = currentMode==='klien' ? KLIEN_PAGES : PK_PAGES;
+  const idx = pages.indexOf(currentPage);
+  if(idx>0) navigateTo(pages[idx-1]);
+}
+function nextPage() {
+  const pages = currentMode==='klien' ? KLIEN_PAGES : PK_PAGES;
+  const idx = pages.indexOf(currentPage);
+  if(idx<pages.length-1) navigateTo(pages[idx+1]);
+}
+
+// ===== RENDER PAGES =====
+function renderPages() {
+  const mc = document.getElementById('main-content');
+  mc.innerHTML = currentMode==='klien' ? renderKlienPages() : renderPKPages();
+}
+
+// ===== KLIEN PAGES =====
+function renderKlienPages() {
+  return `
+  <div class="page active" id="page-beranda">
+    <div class="page-hdr"><h1>Selamat pagi, Ahmad 👋</h1><p>Kamis, 08 Mei 2026 · Bapas Kelas I Serang, Banten</p></div>
+    <div class="alert alert-amber">
+      <i class="ti ti-alert-triangle"></i>
+      <div style="flex:1"><strong>Wajib lapor dalam 2 hari!</strong><p>Batas lapor Mei 2026 adalah 10 Mei. Lakukan sekarang secara online.</p></div>
+      <button class="btn btn-primary btn-sm" onclick="navigateTo('wajiblapor')" style="flex-shrink:0">Lapor</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card sc-blue"><div class="sc-icon" style="background:var(--blue-light)"><i class="ti ti-calendar-check" style="color:var(--blue)"></i></div><div class="sc-val">12</div><div class="sc-lbl">Wajib Lapor</div></div>
+      <div class="stat-card sc-green"><div class="sc-icon" style="background:var(--green-light)"><i class="ti ti-mood-happy" style="color:var(--green)"></i></div><div class="sc-val">8</div><div class="sc-lbl">Sesi Konseling</div></div>
+      <div class="stat-card sc-amber"><div class="sc-icon" style="background:var(--accent-light)"><i class="ti ti-files" style="color:#D08000"></i></div><div class="sc-val">5</div><div class="sc-lbl">Dokumen</div></div>
+      <div class="stat-card sc-red"><div class="sc-icon" style="background:#F3E8FF"><i class="ti ti-clock" style="color:var(--purple)"></i></div><div class="sc-val">250</div><div class="sc-lbl">Hari Tersisa</div></div>
+    </div>
+    <div class="sec-row"><h2><i class="ti ti-grid-dots"></i> Layanan Mandiri</h2></div>
+    <div class="menu-grid">
+      <div class="menu-tile" onclick="navigateTo('wajiblapor')"><div class="tile-icon" style="background:var(--blue-light)"><i class="ti ti-scan" style="color:var(--blue)"></i></div><h3>Wajib Lapor</h3><p>Verifikasi wajah digital</p><span class="tile-badge">!</span></div>
+      <div class="menu-tile" onclick="navigateTo('jadwal')"><div class="tile-icon" style="background:var(--accent-light)"><i class="ti ti-calendar-event" style="color:#D08000"></i></div><h3>Jadwal Bimbingan</h3><p>Konseling & litmas</p></div>
+      <div class="menu-tile" onclick="navigateTo('permohonan')"><div class="tile-icon" style="background:var(--green-light)"><i class="ti ti-file-plus" style="color:var(--green)"></i></div><h3>Permohonan PB/CB</h3><p>Ajukan secara digital</p></div>
+      <div class="menu-tile" onclick="navigateTo('dokumen')"><div class="tile-icon" style="background:var(--purple-light)"><i class="ti ti-folder-open" style="color:var(--purple)"></i></div><h3>Dokumen Saya</h3><p>Unduh surat & berkas</p></div>
+      <div class="menu-tile" onclick="navigateTo('notifikasi')"><div class="tile-icon" style="background:var(--accent-light)"><i class="ti ti-bell" style="color:#D08000"></i></div><h3>Notifikasi</h3><p>Pengingat terbaru</p><span class="tile-badge">2</span></div>
+      <div class="menu-tile" onclick="navigateTo('profil')"><div class="tile-icon" style="background:var(--gray-100)"><i class="ti ti-user" style="color:var(--gray-600)"></i></div><h3>Profil Saya</h3><p>Data pembimbingan</p></div>
+    </div>
+    <div class="sec-row"><h2><i class="ti ti-clock"></i> Jadwal Terdekat</h2><button class="sec-link" onclick="navigateTo('jadwal')">Lihat semua →</button></div>
+    <div class="card"><div class="card-body">
+      <div class="sched-list">
+        <div class="sched-item"><div class="sched-date"><div class="sd-day">10</div><div class="sd-mon">Mei</div></div><div class="sched-div"></div><div class="sched-info" style="flex:1"><strong>Wajib Lapor Bulanan</strong><span>09.00 · Bapas / Online</span></div><span class="sched-tag tag-wajib">Wajib</span></div>
+        <div class="sched-item"><div class="sched-date"><div class="sd-day">15</div><div class="sd-mon">Mei</div></div><div class="sched-div"></div><div class="sched-info" style="flex:1"><strong>Konseling Individual</strong><span>13.00 · Zoom</span></div><span class="sched-tag tag-online">Online</span></div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="page" id="page-wajiblapor">
+    <div class="page-hdr"><h1>Wajib Lapor Online</h1><p>Verifikasi identitas biometrik untuk lapor diri bulan Mei 2026</p></div>
+    <div id="wl-content">${renderWLStep1()}</div>
+  </div>
+
+  <div class="page" id="page-jadwal">
+    <div class="page-hdr"><h1>Jadwal Bimbingan</h1><p>Semua jadwal kegiatan pembimbingan Anda</p></div>
+    <div class="tabs"><button class="tab-btn active" onclick="switchTab(this,'tab-jdtg')">Mendatang</button><button class="tab-btn" onclick="switchTab(this,'tab-jdsl')">Selesai</button></div>
+    <div id="tab-jdtg">
+      <div class="sched-list">
+        ${[['10','Mei','Wajib Lapor Bulanan Mei 2026','09.00–10.00 · Bapas / Online','tag-wajib','Wajib'],
+           ['15','Mei','Sesi Konseling Psikologis','13.00–14.00 · Zoom','tag-online','Online'],
+           ['22','Mei','Bimbingan Kelompok','10.00–11.30 · Ruang 3 Bapas','tag-luring','Luring'],
+           ['05','Jun','Evaluasi Litmas Triwulan','09.00–10.30 · Bapas','tag-wajib','Wajib']].map(([d,m,t,s,tg,lb])=>`
+        <div class="sched-item"><div class="sched-date"><div class="sd-day">${d}</div><div class="sd-mon">${m}</div></div><div class="sched-div"></div><div class="sched-info" style="flex:1"><strong>${t}</strong><span>${s}</span></div><span class="sched-tag ${tg}">${lb}</span></div>`).join('')}
+      </div>
+    </div>
+    <div id="tab-jdsl" style="display:none">
+      <div class="sched-list">
+        <div class="sched-item" style="opacity:.7"><div class="sched-date"><div class="sd-day">10</div><div class="sd-mon">Apr</div></div><div class="sched-div"></div><div class="sched-info" style="flex:1"><strong>Wajib Lapor April ✓</strong><span>Selesai · Verifikasi online berhasil</span></div><span class="badge b-aktif">Selesai</span></div>
+      </div>
+    </div>
+    <div style="margin-top:1rem"><button class="btn btn-outline btn-sm"><i class="ti ti-calendar-plus"></i> Minta Perubahan Jadwal</button></div>
+  </div>
+
+  <div class="page" id="page-permohonan">
+    <div class="page-hdr"><h1>Permohonan PB / CB</h1><p>Ajukan permohonan pembebasan bersyarat secara digital</p></div>
+    <div id="perm-content">
+      <div class="alert alert-info"><i class="ti ti-info-circle"></i><div><strong>Syarat pengajuan</strong><p>Pastikan telah memenuhi 2/3 masa pidana dan mendapat rekomendasi PK. Proses 7–14 hari kerja.</p></div></div>
+      <div class="card"><div class="card-head"><i class="ti ti-file-plus"></i><h3>Formulir Permohonan</h3></div><div class="card-body">
+        <div class="fg"><label>JENIS PERMOHONAN</label><select><option>Pembebasan Bersyarat (PB)</option><option>Cuti Bersyarat (CB)</option><option>Cuti Menjelang Bebas (CMB)</option><option>Asimilasi</option></select></div>
+        <div class="fg"><label>NO. REGISTER</label><input type="text" value="W27.PAS.PK.01.01.2024"></div>
+        <div class="fg"><label>ALAMAT TUJUAN</label><input type="text" placeholder="Alamat lengkap tujuan"></div>
+        <div class="fg"><label>NAMA PENJAMIN</label><input type="text" placeholder="Nama keluarga/penjamin"></div>
+        <div class="fg"><label>NO. HP PENJAMIN</label><input type="tel" placeholder="08xxxxxxxxxx"></div>
+        <div class="fg"><label>ALASAN PERMOHONAN</label><textarea placeholder="Uraikan alasan permohonan..."></textarea></div>
+        <div style="margin-top:.875rem;display:flex;gap:8px">
+          <button class="btn btn-primary btn-lg" style="flex:1" onclick="submitPermohonan()"><i class="ti ti-send"></i> Kirim</button>
+          <button class="btn btn-outline btn-lg"><i class="ti ti-device-floppy"></i> Draft</button>
+        </div>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="page" id="page-dokumen">
+    <div class="page-hdr"><h1>Dokumen Saya</h1><p>Akses dan unduh dokumen resmi pembimbingan</p></div>
+    <div class="tabs"><button class="tab-btn active" onclick="switchTab(this,'tab-dkaktif')">Aktif</button><button class="tab-btn" onclick="switchTab(this,'tab-dkarsip')">Arsip</button></div>
+    <div id="tab-dkaktif">
+      <div class="doc-list">
+        ${[['ti-file-certificate','SK Pembebasan Bersyarat','Ditjenpas · 12 Jan 2026 · PDF'],
+           ['ti-file-description','Kartu Bimbingan Kemasyarakatan','Bapas Kelas I Serang · Aktif'],
+           ['ti-file-analytics','Laporan Litmas','PK Siti Rahayu · Update 01 Apr 2026'],
+           ['ti-file-check','Bukti Wajib Lapor — Apr 2026','No: WL/2026/04/00312 · 10 Apr 2026']].map(([ic,t,s])=>`
+        <div class="doc-item"><div class="doc-icon"><i class="ti ${ic}"></i></div><div class="doc-info" style="flex:1"><strong>${t}</strong><span>${s}</span></div><i class="ti ti-download doc-dl"></i></div>`).join('')}
+      </div>
+    </div>
+    <div id="tab-dkarsip" style="display:none">
+      <div class="doc-list">
+        ${[['Bukti Wajib Lapor — Mar 2026','No: WL/2026/03/00251'],['Bukti Wajib Lapor — Feb 2026','No: WL/2026/02/00198'],['Bukti Wajib Lapor — Jan 2026','No: WL/2026/01/00143']].map(([t,s])=>`
+        <div class="doc-item" style="opacity:.7"><div class="doc-icon" style="background:var(--gray-100)"><i class="ti ti-file-check" style="color:var(--gray-400)"></i></div><div class="doc-info" style="flex:1"><strong>${t}</strong><span>${s}</span></div><i class="ti ti-download doc-dl"></i></div>`).join('')}
+      </div>
+    </div>
+  </div>
+
+  <div class="page" id="page-notifikasi">
+    <div class="page-hdr"><h1>Notifikasi</h1><p>Informasi terbaru dari Bapas</p></div>
+    <div style="text-align:right;margin-bottom:.75rem"><button class="btn btn-outline btn-sm" onclick="clearNotif()"><i class="ti ti-checks"></i> Tandai dibaca</button></div>
+    <div class="notif-item unread"><div class="notif-ico ni-amber"><i class="ti ti-alert-triangle"></i></div><div style="flex:1"><strong>Wajib lapor dalam 2 hari!</strong><p>Segera lapor diri bulan Mei sebelum 10 Mei 2026. Bisa online via portal ini.</p><span class="notif-time">08 Mei 2026, 08.00 WIB</span></div><button class="btn btn-primary btn-sm" onclick="navigateTo('wajiblapor')" style="flex-shrink:0">Lapor</button></div>
+    <div class="notif-item unread"><div class="notif-ico ni-blue"><i class="ti ti-calendar-check"></i></div><div><strong>Jadwal konseling dikonfirmasi</strong><p>Sesi 15 Mei 2026 pukul 13.00 via Zoom telah dikonfirmasi oleh PK.</p><span class="notif-time">07 Mei 2026, 14.22 WIB</span></div></div>
+    <div class="notif-item read"><div class="notif-ico ni-green"><i class="ti ti-circle-check"></i></div><div><strong>Wajib lapor April berhasil ✓</strong><p>No. WL/2026/04/00312 tersedia di Dokumen Saya.</p><span class="notif-time">10 Apr 2026, 09.45 WIB</span></div></div>
+    <div class="notif-item read"><div class="notif-ico ni-blue"><i class="ti ti-file-text"></i></div><div><strong>Laporan litmas diperbarui</strong><p>PK Siti Rahayu memperbarui laporan litmas Anda.</p><span class="notif-time">01 Apr 2026, 11.00 WIB</span></div></div>
+  </div>
+
+  <div class="page" id="page-profil">
+    <div class="page-hdr"><h1>Profil Saya</h1><p>Data diri dan informasi pembimbingan</p></div>
+    <div class="profile-hdr">
+      <div class="profile-av" style="background:var(--accent)">AS</div>
+      <div><h2>Ahmad Subagyo</h2><p>No. Register: W27.PAS.PK.01.01.2024</p><span class="profile-status">Aktif — Pembebasan Bersyarat</span></div>
+    </div>
+    <div class="card"><div class="card-head"><i class="ti ti-user"></i><h3>Data Diri</h3></div><div class="card-body">
+      ${[['Nama','Ahmad Subagyo'],['Tanggal Lahir','12 Maret 1985'],['NIK','3312xxxxxx'],['Alamat','Jl. Raya Serang No.45, Kota Serang'],['Pekerjaan','Teknisi Las']].map(([k,v])=>`<div class="detail-row"><span>${k}</span><strong>${v}</strong></div>`).join('')}
+    </div></div>
+    <div class="card"><div class="card-head"><i class="ti ti-building-community"></i><h3>Info Pembimbingan</h3></div><div class="card-body">
+      ${[['Jenis','Pembebasan Bersyarat'],['PK Pendamping','Siti Rahayu, S.H.'],['Bapas','Kelas I Serang, Banten'],['Mulai','12 Jan 2026'],['Berakhir','12 Jan 2027'],['Sisa','250 hari'],['Kepatuhan','100% ✓']].map(([k,v])=>`<div class="detail-row"><span>${k}</span><strong style="color:${v.includes('✓')?'var(--green)':'inherit'}">${v}</strong></div>`).join('')}
+    </div></div>
+    <div class="card"><div class="card-head"><i class="ti ti-lock"></i><h3>Akun & Keamanan</h3></div><div class="card-body" style="display:flex;flex-wrap:wrap;gap:8px">
+      <button class="btn btn-outline btn-sm"><i class="ti ti-key"></i> Ganti Kata Sandi</button>
+      <button class="btn btn-outline btn-sm"><i class="ti ti-phone"></i> Ubah No. HP</button>
+      <button class="btn btn-outline btn-sm" style="color:var(--red);border-color:var(--red)" onclick="doLogout()"><i class="ti ti-logout"></i> Keluar</button>
+    </div></div>
+  </div>`;
+}
+
+// ===== WL STEPS =====
+function renderWLStep1() {
+  return `<div class="card"><div class="card-head"><i class="ti ti-scan"></i><h3>Verifikasi Wajah</h3></div><div class="card-body">
+    <div class="steps">
+      <div class="step active" id="s1"><div class="step-c">1</div><div class="step-lbl">Scan Wajah</div></div>
+      <div class="step-line" id="sl1"></div>
+      <div class="step" id="s2"><div class="step-c">2</div><div class="step-lbl">Konfirmasi</div></div>
+      <div class="step-line" id="sl2"></div>
+      <div class="step" id="s3"><div class="step-c">3</div><div class="step-lbl">Selesai</div></div>
+    </div>
+    <div class="alert alert-info" style="margin-bottom:1rem"><i class="ti ti-info-circle"></i><div><strong>Panduan</strong><p>Pastikan pencahayaan cukup dan wajah terlihat jelas di kamera.</p></div></div>
+    <div class="face-area" id="face-area" onclick="startFaceScan()">
+      <div class="scan-ring" id="scan-ring"><i class="ti ti-face-id" id="scan-icon"></i></div>
+      <div><p id="scan-text" style="font-size:14px;font-weight:600;color:var(--gray-600)">Ketuk untuk memulai kamera</p><p id="scan-sub" style="font-size:12px;color:var(--gray-400)">Sistem akan memindai wajah otomatis</p></div>
+    </div>
+    <div class="card" style="margin-top:0"><div class="card-body">
+      ${[['Klien','Ahmad Subagyo'],['No. Register','W27.PAS.PK.01.01.2024'],['Periode','Mei 2026'],['Batas Waktu','10 Mei 2026'],['PK','Ibu Siti Rahayu, S.H.']].map(([k,v])=>`<div class="detail-row"><span>${k}</span><strong style="${v==='10 Mei 2026'?'color:#D08000':''}">${v}</strong></div>`).join('')}
+    </div></div>
+  </div></div>`;
+}
+
+function startFaceScan() {
+  if(scanStage!==0) return;
+  scanStage=1;
+  const area=document.getElementById('face-area');
+  const ring=document.getElementById('scan-ring');
+  const icon=document.getElementById('scan-icon');
+  const text=document.getElementById('scan-text');
+  const sub=document.getElementById('scan-sub');
+  if(!area) return;
+  area.classList.add('scanning');
+  ring.classList.add('pulse');
+  text.textContent='Memindai wajah...';
+  text.style.color='var(--blue)';
+  sub.style.color='var(--blue)';
+  const stages=['Mendeteksi wajah...','Analisis biometrik...','Memverifikasi identitas...','Berhasil!'];
+  let si=0;
+  const intv=setInterval(()=>{
+    si++;
+    if(si<stages.length) text.textContent=stages[si];
+    if(si>=stages.length){
+      clearInterval(intv);
+      area.classList.remove('scanning');area.classList.add('verified');
+      ring.classList.remove('pulse');ring.classList.add('done');
+      icon.className='ti ti-circle-check';
+      text.textContent='Identitas terverifikasi ✓';text.style.color='var(--green)';
+      sub.textContent='Ahmad Subagyo · Akurasi 99.2%';sub.style.color='var(--green)';
+      setTimeout(()=>{
+        document.getElementById('wl-content').innerHTML=renderWLStep2();
+        document.getElementById('s1').className='step done';
+        document.getElementById('sc1-inner').innerHTML='<i class="ti ti-check" style="font-size:12px"></i>';
+        document.getElementById('sl1').classList.add('done');
+        document.getElementById('s2').className='step active';
+      },800);
+    }
+  },700);
+}
+
+function renderWLStep2() {
+  return `<div class="card"><div class="card-head"><i class="ti ti-clipboard-check"></i><h3>Konfirmasi Data</h3></div><div class="card-body">
+    <div class="steps">
+      <div class="step done" id="s1"><div class="step-c" id="sc1-inner"><i class="ti ti-check" style="font-size:12px"></i></div><div class="step-lbl">Scan Wajah</div></div>
+      <div class="step-line done" id="sl1"></div>
+      <div class="step active" id="s2"><div class="step-c">2</div><div class="step-lbl">Konfirmasi</div></div>
+      <div class="step-line" id="sl2"></div>
+      <div class="step" id="s3"><div class="step-c">3</div><div class="step-lbl">Selesai</div></div>
+    </div>
+    <div class="alert alert-green" style="margin-bottom:1rem"><i class="ti ti-circle-check"></i><div><strong>Verifikasi berhasil!</strong><p>Identitas dikonfirmasi. Lengkapi data laporan di bawah.</p></div></div>
+    <div class="fg"><label>KONDISI SAAT INI</label><select><option>Sehat & baik</option><option>Sakit ringan</option><option>Sedang dalam perawatan</option></select></div>
+    <div class="fg"><label>LOKASI SAAT INI</label><input type="text" value="Serang, Banten"></div>
+    <div class="fg"><label>KEGIATAN BULAN INI</label><textarea>Bekerja sebagai teknisi di bengkel las di Serang. Aktif mengikuti pengajian rutin. Kondisi keluarga baik.</textarea></div>
+    <button class="btn btn-green btn-full btn-lg" onclick="finishWL()" style="margin-top:.5rem"><i class="ti ti-check"></i> Selesaikan Wajib Lapor</button>
+  </div></div>`;
+}
+
+function finishWL() {
+  scanStage=0;
+  document.getElementById('wl-content').innerHTML=`<div class="card"><div class="card-body">
+    <div class="success-screen">
+      <div class="success-icon si-green"><i class="ti ti-circle-check"></i></div>
+      <h2>Wajib Lapor Selesai!</h2>
+      <p>Wajib lapor Mei 2026 berhasil dicatat. Surat bukti tersedia untuk diunduh.</p>
+      <div class="bukti-card">
+        <div style="text-align:center;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--gray-200)"><p style="font-size:11px;color:var(--gray-400)">BUKTI WAJIB LAPOR</p><strong style="font-size:14px;color:var(--navy)">WL/2026/05/00389</strong></div>
+        <div class="bukti-row"><span>Nama</span><strong>Ahmad Subagyo</strong></div>
+        <div class="bukti-row"><span>Tanggal</span><strong>08 Mei 2026, 09:14 WIB</strong></div>
+        <div class="bukti-row"><span>Periode</span><strong>Mei 2026</strong></div>
+        <div class="bukti-row"><span>Status</span><strong style="color:var(--green)">✓ Terverifikasi</strong></div>
+      </div>
+      <div style="display:flex;gap:8px;width:100%;max-width:300px">
+        <button class="btn btn-primary btn-full" onclick="navigateTo('beranda')"><i class="ti ti-home"></i> Beranda</button>
+        <button class="btn btn-outline btn-full"><i class="ti ti-download"></i> Unduh</button>
+      </div>
+    </div>
+  </div></div>`;
+}
+
+function submitPermohonan() {
+  document.getElementById('perm-content').innerHTML=`<div class="card"><div class="card-body">
+    <div class="success-screen">
+      <div class="success-icon si-blue"><i class="ti ti-send"></i></div>
+      <h2>Permohonan Terkirim!</h2>
+      <p>Permohonan Anda sedang diproses oleh PK Bapas Kelas I Serang.</p>
+      <div class="bukti-card">
+        <div class="bukti-row"><span>No. Permohonan</span><strong>PB/2026/05/00047</strong></div>
+        <div class="bukti-row"><span>Tanggal</span><strong>08 Mei 2026</strong></div>
+        <div class="bukti-row"><span>Status</span><strong style="color:#856404">⏳ Dalam Proses</strong></div>
+        <div class="bukti-row"><span>Estimasi</span><strong>7–14 hari kerja</strong></div>
+      </div>
+      <div style="display:flex;gap:8px;width:100%;max-width:300px">
+        <button class="btn btn-primary btn-full" onclick="navigateTo('beranda')"><i class="ti ti-home"></i> Beranda</button>
+        <button class="btn btn-outline btn-full"><i class="ti ti-download"></i> Bukti</button>
+      </div>
+    </div>
+  </div></div>`;
+}
+
+// ===== PK PAGES =====
+function renderPKPages() {
+  const wlRows = klienList.map(k=>`
+    <tr>
+      <td><div class="klien-name"><div class="klien-av" style="background:${k.color}">${k.nama.split(' ').map(n=>n[0]).join('').slice(0,2)}</div><div class="kn-info"><strong>${k.nama}</strong><span>${k.reg}</span></div></div></td>
+      <td>${k.lapor==='sudah'?'<span class="badge b-sudah">Sudah</span>':'<span class="badge b-belum">Belum</span>'}</td>
+      <td style="font-size:12px">${k.waktu}</td>
+      <td style="font-size:12px">${k.metode}</td>
+      <td>${k.lapor==='belum'?'<button class="btn btn-red btn-sm"><i class="ti ti-send"></i> Kirim Pengingat</button>':'<button class="btn btn-outline btn-sm"><i class="ti ti-file-text"></i> Laporan</button>'}</td>
+    </tr>`).join('');
+
+  const klienRows = klienList.map(k=>`
+    <tr>
+      <td><div class="klien-name"><div class="klien-av" style="background:${k.color}">${k.nama.split(' ').map(n=>n[0]).join('').slice(0,2)}</div><div class="kn-info"><strong>${k.nama}</strong><span>${k.reg}</span></div></div></td>
+      <td><span class="badge ${k.jenis==='PB'?'b-pb':k.jenis==='CB'?'b-cb':'b-aktif'}">${k.jenis==='PB'?'Pem. Bersyarat':k.jenis==='CB'?'Cuti Bersyarat':'Asimilasi'}</span></td>
+      <td style="font-size:12px">${k.berakhir}</td>
+      <td>
+        <div style="display:flex;align-items:center;gap:6px">
+          <div style="flex:1;height:5px;background:var(--gray-100);border-radius:100px;overflow:hidden;min-width:40px"><div style="height:100%;width:${k.kepatuhan}%;background:${k.kepatuhan===100?'var(--green)':k.kepatuhan>=85?'var(--blue)':'var(--accent)'};border-radius:100px"></div></div>
+          <span style="font-size:11px;font-weight:700;color:${k.kepatuhan===100?'var(--green)':k.kepatuhan>=85?'var(--blue)':'var(--accent)'}">${k.kepatuhan}%</span>
+        </div>
+      </td>
+      <td><button class="btn btn-primary btn-sm"><i class="ti ti-eye"></i> Detail</button></td>
+    </tr>`).join('');
+
+  return `
+  <div class="page active" id="page-beranda">
+    <div class="page-hdr"><h1>Selamat pagi, Bu Siti 👋</h1><p>Kamis, 08 Mei 2026 · Bapas Kelas I Serang — Dashboard PK</p></div>
+    <div class="alert alert-red">
+      <i class="ti ti-alert-circle"></i>
+      <div style="flex:1"><strong>3 klien belum wajib lapor!</strong><p>Batas 10 Mei 2026. Segera tindak lanjuti.</p></div>
+      <button class="btn btn-red btn-sm" onclick="navigateTo('monitoring')" style="flex-shrink:0">Monitor</button>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card sc-blue"><div class="sc-icon" style="background:var(--blue-light)"><i class="ti ti-users" style="color:var(--blue)"></i></div><div class="sc-val">18</div><div class="sc-lbl">Total Klien</div></div>
+      <div class="stat-card sc-green"><div class="sc-icon" style="background:var(--green-light)"><i class="ti ti-circle-check" style="color:var(--green)"></i></div><div class="sc-val">15</div><div class="sc-lbl">Sudah Lapor</div></div>
+      <div class="stat-card sc-red"><div class="sc-icon" style="background:var(--red-light)"><i class="ti ti-alert-circle" style="color:var(--red)"></i></div><div class="sc-val">3</div><div class="sc-lbl">Belum Lapor</div></div>
+      <div class="stat-card sc-amber"><div class="sc-icon" style="background:var(--accent-light)"><i class="ti ti-file-text" style="color:#D08000"></i></div><div class="sc-val">2</div><div class="sc-lbl">Permohonan</div></div>
+    </div>
+    <div class="sec-row"><h2><i class="ti ti-clock"></i> Aktivitas Hari Ini</h2></div>
+    <div class="card"><div class="card-body">
+      <div class="tl">
+        <div class="tl-item"><div class="tl-left"><div class="tl-dot green"><i class="ti ti-check"></i></div><div class="tl-line"></div></div><div class="tl-content"><strong>Ahmad Subagyo — Wajib Lapor ✓</strong><p>08 Mei 2026, 09:14 WIB · Online · No. WL/2026/05/00389</p></div></div>
+        <div class="tl-item"><div class="tl-left"><div class="tl-dot green"><i class="ti ti-check"></i></div><div class="tl-line"></div></div><div class="tl-content"><strong>Budi Santoso — Wajib Lapor ✓</strong><p>08 Mei 2026, 10:02 WIB · Online · No. WL/2026/05/00390</p></div></div>
+        <div class="tl-item"><div class="tl-left"><div class="tl-dot amber"><i class="ti ti-file-plus"></i></div><div class="tl-line"></div></div><div class="tl-content"><strong>Rudi Hartono — Permohonan PB Masuk</strong><p>08 Mei 2026, 11:20 WIB · No. PB/2026/05/00047</p></div></div>
+        <div class="tl-item"><div class="tl-left"><div class="tl-dot red"><i class="ti ti-alert-circle"></i></div></div><div class="tl-content"><strong>Dedi Prasetyo — Belum Lapor ⚠</strong><p>Notifikasi pengingat sudah dikirim otomatis</p></div></div>
+      </div>
+    </div></div>
+    <div class="sec-row"><h2><i class="ti ti-chart-pie"></i> Kepatuhan Bulan Ini</h2></div>
+    <div class="card"><div class="card-body">
+      <div style="text-align:center;margin-bottom:1rem"><div style="font-size:40px;font-weight:800;color:var(--navy)">83%</div><div style="font-size:12px;color:var(--gray-400)">Kepatuhan wajib lapor Mei 2026</div></div>
+      <div class="prog-wrap"><div class="prog-label"><strong>Sudah Lapor</strong><span>15/18</span></div><div class="prog-bar"><div class="prog-fill" style="width:83%;background:var(--green)"></div></div></div>
+      <div class="prog-wrap"><div class="prog-label"><strong>Belum Lapor</strong><span>3/18</span></div><div class="prog-bar"><div class="prog-fill" style="width:17%;background:var(--red)"></div></div></div>
+      <div style="display:flex;gap:8px;margin-top:.875rem">
+        ${[['100%','Apr','var(--green)'],['94%','Mar','var(--blue)'],['89%','Feb','var(--accent)']].map(([p,m,c])=>`<div style="flex:1;background:var(--gray-50);border-radius:var(--r-md);padding:8px;text-align:center"><div style="font-size:17px;font-weight:800;color:${c}">${p}</div><div style="font-size:10px;color:var(--gray-400)">${m} 2026</div></div>`).join('')}
+      </div>
+    </div></div>
+  </div>
+
+  <div class="page" id="page-monitoring">
+    <div class="page-hdr"><h1>Monitoring Wajib Lapor</h1><p>Status pelaporan klien — Mei 2026</p></div>
+    <div class="alert alert-red"><i class="ti ti-alert-circle"></i><div><strong>3 klien belum lapor — batas 10 Mei 2026</strong><p>Notifikasi otomatis sudah dikirim ke klien.</p></div></div>
+    <div class="card"><div class="card-head"><i class="ti ti-scan"></i><h3>Rekap Wajib Lapor</h3><div class="ml"><button class="btn btn-primary btn-sm"><i class="ti ti-send"></i> Notifikasi Massal</button></div></div>
+    <div class="card-body">
+      <div class="search-wrap"><i class="ti ti-search"></i><input type="text" placeholder="Cari klien..."></div>
+      <div class="tbl-wrap"><table class="data-table"><thead><tr><th>Klien</th><th>Status</th><th>Waktu</th><th>Metode</th><th>Aksi</th></tr></thead><tbody>${wlRows}</tbody></table></div>
+    </div></div>
+  </div>
+
+  <div class="page" id="page-klien">
+    <div class="page-hdr"><h1>Data Klien Binaan</h1><p>18 klien aktif</p></div>
+    <div class="card"><div class="card-head"><i class="ti ti-users"></i><h3>Daftar Klien</h3><div class="ml"><button class="btn btn-primary btn-sm"><i class="ti ti-plus"></i> Tambah</button></div></div>
+    <div class="card-body">
+      <div class="search-wrap"><i class="ti ti-search"></i><input type="text" placeholder="Cari klien..."></div>
+      <div class="tbl-wrap"><table class="data-table"><thead><tr><th>Klien</th><th>Jenis</th><th>Berakhir</th><th>Kepatuhan</th><th>Aksi</th></tr></thead><tbody>${klienRows}</tbody></table></div>
+    </div></div>
+  </div>
+
+  <div class="page" id="page-jadwal">
+    <div class="page-hdr"><h1>Jadwal Bimbingan</h1><p>Kelola jadwal kegiatan pembimbingan</p></div>
+    <div style="text-align:right;margin-bottom:.875rem"><button class="btn btn-primary btn-sm"><i class="ti ti-plus"></i> Tambah Jadwal</button></div>
+    <div class="sched-list">
+      ${[['10','Mei','Wajib Lapor Mei 2026 — Semua Klien','09.00–10.00 · Bapas / Online','tag-wajib','Wajib'],
+         ['15','Mei','Konseling Individual — Ahmad Subagyo','13.00–14.00 · Zoom','tag-online','Online'],
+         ['22','Mei','Bimbingan Kelompok (5 klien)','10.00–11.30 · Ruang 3 Bapas','tag-luring','Luring'],
+         ['05','Jun','Evaluasi Litmas Triwulan','09.00–10.30 · Ruang PK Bapas','tag-wajib','Wajib']].map(([d,m,t,s,tg,lb])=>`
+      <div class="sched-item"><div class="sched-date"><div class="sd-day">${d}</div><div class="sd-mon">${m}</div></div><div class="sched-div"></div><div class="sched-info" style="flex:1"><strong>${t}</strong><span>${s}</span></div><span class="sched-tag ${tg}">${lb}</span><button class="btn btn-outline btn-sm"><i class="ti ti-edit"></i></button></div>`).join('')}
+    </div>
+  </div>
+
+  <div class="page" id="page-permohonan">
+    <div class="page-hdr"><h1>Verifikasi PB / CB</h1><p>Tinjau permohonan dari klien</p></div>
+    <div class="card"><div class="card-head"><i class="ti ti-file-check"></i><h3>Permohonan Masuk</h3></div><div class="card-body">
+      <div class="tbl-wrap"><table class="data-table">
+        <thead><tr><th>Klien</th><th>Jenis</th><th>Masuk</th><th>No. Permohonan</th><th>Status</th><th>Aksi</th></tr></thead>
+        <tbody>
+          <tr><td><div class="klien-name"><div class="klien-av" style="background:#1565C0">RH</div><div class="kn-info"><strong>Rudi Hartono</strong><span>W27.PAS.PK.03.01.2024</span></div></div></td><td><span class="badge b-pb">PB</span></td><td style="font-size:12px">08 Mei 2026</td><td style="font-family:monospace;font-size:11px">PB/2026/05/00047</td><td><span class="badge b-proses">Proses</span></td><td><div style="display:flex;gap:5px"><button class="btn btn-green btn-sm"><i class="ti ti-check"></i> Setuju</button><button class="btn btn-red btn-sm"><i class="ti ti-x"></i> Tolak</button></div></td></tr>
+          <tr><td><div class="klien-name"><div class="klien-av" style="background:#6B21A8">SW</div><div class="kn-info"><strong>Slamet Widodo</strong><span>W27.PAS.PK.05.01.2024</span></div></div></td><td><span class="badge b-cb">CB</span></td><td style="font-size:12px">06 Mei 2026</td><td style="font-family:monospace;font-size:11px">CB/2026/05/00021</td><td><span class="badge b-proses">Proses</span></td><td><div style="display:flex;gap:5px"><button class="btn btn-green btn-sm"><i class="ti ti-check"></i> Setuju</button><button class="btn btn-red btn-sm"><i class="ti ti-x"></i> Tolak</button></div></td></tr>
+        </tbody>
+      </table></div>
+    </div></div>
+  </div>
+
+  <div class="page" id="page-laporan">
+    <div class="page-hdr"><h1>Laporan & Rekap</h1><p>Laporan kepatuhan dan kinerja otomatis</p></div>
+    <div class="card"><div class="card-head"><i class="ti ti-chart-bar"></i><h3>Rekap Kepatuhan Bulanan</h3></div><div class="card-body">
+      ${[['Mei 2026','83%','15/18'],['Apr 2026','100%','18/18'],['Mar 2026','94%','17/18'],['Feb 2026','89%','16/18']].map(([b,p,f])=>`
+      <div class="prog-wrap"><div class="prog-label"><strong>${b}</strong><span>${f} · ${p}</span></div>
+      <div class="prog-bar"><div class="prog-fill" style="width:${p};background:${p==='100%'?'var(--green)':p>='94%'?'var(--blue)':'var(--accent)'}"></div></div></div>`).join('')}
+      <button class="btn btn-outline btn-sm" style="margin-top:.875rem"><i class="ti ti-download"></i> Unduh PDF</button>
+    </div></div>
+    <div class="card"><div class="card-head"><i class="ti ti-files"></i><h3>Laporan Tersedia</h3></div><div class="card-body" style="display:flex;flex-direction:column;gap:7px">
+      ${[['Rekap Wajib Lapor Mei 2026','Otomatis','ti-file-text','var(--blue-light)','var(--blue)'],
+         ['Laporan Kinerja PK Q1 2026','Jan–Mar 2026','ti-chart-pie','var(--green-light)','var(--green)'],
+         ['Daftar Klien Aktif','18 klien','ti-users','var(--accent-light)','#D08000'],
+         ['Rekap Permohonan PB/CB','2 diproses','ti-file-check','var(--purple-light)','var(--purple)']].map(([t,s,ic,bg,col])=>`
+      <div class="doc-item"><div class="doc-icon" style="background:${bg};color:${col}"><i class="ti ${ic}"></i></div><div class="doc-info" style="flex:1"><strong>${t}</strong><span>${s}</span></div><i class="ti ti-download doc-dl"></i></div>`).join('')}
+    </div></div>
+  </div>
+
+  <div class="page" id="page-notifikasi">
+    <div class="page-hdr"><h1>Notifikasi</h1><p>Aktivitas terbaru klien binaan</p></div>
+    <div style="text-align:right;margin-bottom:.75rem"><button class="btn btn-outline btn-sm" onclick="clearNotif()"><i class="ti ti-checks"></i> Tandai dibaca</button></div>
+    <div class="notif-item unread"><div class="notif-ico ni-red"><i class="ti ti-alert-circle"></i></div><div style="flex:1"><strong>Dedi Prasetyo belum wajib lapor</strong><p>Batas 10 Mei 2026. Notifikasi pengingat telah dikirim otomatis ke klien.</p><span class="notif-time">08 Mei 2026, 08.00 WIB</span></div><button class="btn btn-red btn-sm" style="flex-shrink:0">Hubungi</button></div>
+    <div class="notif-item unread"><div class="notif-ico ni-amber"><i class="ti ti-file-plus"></i></div><div style="flex:1"><strong>Permohonan PB — Rudi Hartono</strong><p>No. PB/2026/05/00047 masuk. Segera tinjau dokumen.</p><span class="notif-time">08 Mei 2026, 11.20 WIB</span></div><button class="btn btn-primary btn-sm" style="flex-shrink:0" onclick="navigateTo('permohonan')">Tinjau</button></div>
+    <div class="notif-item unread"><div class="notif-ico ni-green"><i class="ti ti-circle-check"></i></div><div><strong>Ahmad Subagyo — Wajib lapor ✓</strong><p>09:14 WIB · No. WL/2026/05/00389 · Biometrik berhasil</p><span class="notif-time">08 Mei 2026, 09.14 WIB</span></div></div>
+    <div class="notif-item read"><div class="notif-ico ni-green"><i class="ti ti-circle-check"></i></div><div><strong>Budi Santoso — Wajib lapor ✓</strong><p>10:02 WIB · No. WL/2026/05/00390</p><span class="notif-time">08 Mei 2026, 10.02 WIB</span></div></div>
+    <div class="notif-item read"><div class="notif-ico ni-blue"><i class="ti ti-calendar-check"></i></div><div><strong>Jadwal konseling Ahmad Subagyo dikonfirmasi</strong><p>15 Mei 2026, 13.00 WIB via Zoom telah dikonfirmasi klien.</p><span class="notif-time">07 Mei 2026, 16.30 WIB</span></div></div>
+  </div>
+
+  <div class="page" id="page-profil">
+    <div class="page-hdr"><h1>Profil PK</h1><p>Data diri Pembimbing Kemasyarakatan</p></div>
+    <div class="profile-hdr" style="background:linear-gradient(135deg,#1a1a2e,#2d2d5e)">
+      <div class="profile-av" style="background:var(--accent)">SR</div>
+      <div><h2>Siti Rahayu, S.H.</h2><p>NIP: 19850512 200604 2 001</p><span class="profile-status">PK Ahli Muda — Aktif</span></div>
+    </div>
+    <div class="card"><div class="card-head"><i class="ti ti-user"></i><h3>Data Diri</h3></div><div class="card-body">
+      ${[['Nama','Siti Rahayu, S.H.'],['NIP','19850512 200604 2 001'],['Jabatan','PK Ahli Muda'],['Unit Kerja','Bapas Kelas I Serang'],['Email','siti.rahayu@kemenimipas.go.id'],['No. HP','0812-xxxx-xxxx']].map(([k,v])=>`<div class="detail-row"><span>${k}</span><strong>${v}</strong></div>`).join('')}
+    </div></div>
+    <div class="card"><div class="card-head"><i class="ti ti-chart-bar"></i><h3>Statistik Kinerja</h3></div><div class="card-body">
+      ${[['Total Klien','18 orang'],['Klien PB','12 orang'],['Klien CB','4 orang'],['Asimilasi','2 orang'],['Kepatuhan Bulan Ini','83%'],['Masa Kerja','20 tahun']].map(([k,v])=>`<div class="detail-row"><span>${k}</span><strong>${v}</strong></div>`).join('')}
+    </div></div>
+    <div class="card"><div class="card-head"><i class="ti ti-lock"></i><h3>Akun</h3></div><div class="card-body" style="display:flex;flex-wrap:wrap;gap:8px">
+      <button class="btn btn-outline btn-sm"><i class="ti ti-key"></i> Ganti Kata Sandi</button>
+      <button class="btn btn-outline btn-sm" style="color:var(--red);border-color:var(--red)" onclick="doLogout()"><i class="ti ti-logout"></i> Keluar</button>
+    </div></div>
+  </div>`;
+}
+
+// ===== TABS =====
+function switchTab(btn, id) {
+  btn.parentElement.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  let el = btn.parentElement.nextElementSibling;
+  while(el){ if(el.id && el.id.startsWith('tab-')) el.style.display='none'; el=el.nextElementSibling; }
+  const t = document.getElementById(id);
+  if(t) t.style.display='block';
+}
+
+// ===== NOTIF =====
+function clearNotif() {
+  document.getElementById('notif-dot').style.display='none';
+  document.querySelectorAll('.notif-item.unread').forEach(n=>n.classList.replace('unread','read'));
+  const c = document.getElementById('sb-notif-cnt');
+  if(c) c.style.display='none';
+}
+
+// ===== KEY EVENTS =====
+document.addEventListener('keydown', e=>{
+  if(e.key==='Enter' && document.getElementById('login-page').style.display!=='none') doLogin();
+  if(e.key==='Escape') closeSidebar();
+});
+</script>
+</body>
+</html>
